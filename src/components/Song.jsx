@@ -20,7 +20,7 @@ class Song extends Component {
         onPlaying={() => console.log('song playing')}
         onFinishedPlaying={() => console.log('song finished')}
         />
-      <button onClick={() => this.playPause()}></button>
+      <button onClick={() => this.playPause()}>{this.state.playing ? "pause" : "play"}</button>
       </div>
     );
   }
