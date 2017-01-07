@@ -6,7 +6,7 @@ const songList = ({tracks}) => {
   let songs = [];
   // TODO add limit property to state and use it in the for loop
   for (let i=0; i < tracks.length; i++) {
-    songs.push(<li key={i}><Song playing={i===1} url={tracks[i].preview_url}/></li>)
+    songs.push(<li key={i}><Song track={tracks[i]}/></li>)
   }
   return (
     <ul>

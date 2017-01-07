@@ -33,13 +33,36 @@ export const FAIL_RECEIVE_SONGS = 'FAIL_RECEIVE_SONGS';
 export const failReceiveSongs = (err) => {
   return {
     type: FAIL_RECEIVE_SONGS,
-    payload: err,
+    payload: { err },
     error: true
   }
 }
 
+export const UPDATE_CURRENT_TRACK = 'UPDATE_CURRENT_TRACK';
+export const updateCurrentTrack = (id) => {
+  return {
+    type: UPDATE_CURRENT_TRACK,
+    payload: { id },
+  }
+}
+
+export const PLAY = 'PLAY';
+export const play = () => {
+  return {
+    type: PLAY
+  };
+}
+
+export const PAUSE = 'PAUSE';
+export const pause = () => {
+  return {
+    type: PAUSE
+  }
+}
+
+
 const buildAPIRequest = (search) => {
-  return `https:/api.spotify.com/v1/search?q=${search.replace(/ /g, '+')}&type=track&limit=2`;
+  return `https:/api.spotify.com/v1/search?q=${search.replace(/ /g, '+')}&type=track&limit=5`;
 }
 
 export const fetchResults = (searchContents) => {
