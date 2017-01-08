@@ -7,15 +7,20 @@ import {
 
 const search = ({searchContents, btnAvailable, onChange, onClick}) => {
   return (
-    <form className="pure-form pure-g" onSubmit={(event) => {
+    <form className="mdl-grid" onSubmit={(event) => {
         event.preventDefault();
         onClick(searchContents);
       }}>
-      <div className="pure-u-2-3">
-        <input className="pure-input-1" value={searchContents} onChange={onChange} type="text" placeholder="Search for a song you like"/>
+      <div className="mdl-cell mdl-cell--8-col mdl-textfield mdl-js-textfield">
+        <input onChange={(event) => {
+            onChange(event.target.value);
+          }} className="mdl-textfield__input" type="text" id="sample1"/>
+        <label className="mdl-textfield__label" htmlFor="sample1">Search for a song...</label>
       </div>
-      <div className="pure-u-1-3">
-        <button className={`${btnAvailable ? "" : "pure-button-disabled"} pure-button pure-input-1`} value="Search" type="submit">Search</button>
+      <div className="mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield">
+        <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">
+          Search
+        </button>
       </div>
     </form>
   );
@@ -30,8 +35,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onChange: (event) => {
-      dispatch(updateSearchContent(event.target.value));
+    onChange: (content) => {
+      dispatch(updateSearchContent(content));
     },
     onClick: (searchContents) => {
       dispatch(fetchResults(searchContents))

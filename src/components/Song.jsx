@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { updateCurrentTrack, play as playState, pause as pauseState } from '../actions/actions'
 
 
-const song = ({currentTrack, isPlaying, track, key, play, pause}) => {
+const song = ({currentTrack, isPlaying, track, idx, play, pause}) => {
+  console.log(idx);
   let sound = (currentTrack === track.id) ? (<Sound
     url={track.preview_url}
     playStatus={isPlaying ? Sound.status.PLAYING : Sound.status.PAUSED}
@@ -15,18 +16,17 @@ const song = ({currentTrack, isPlaying, track, key, play, pause}) => {
     />) : <noscript />;
   return (
     <tr>
+      <td>{idx}</td>
       <td>
-        {key}
+        {sound}
+        <button onClick={() => isPlaying ? pause() : play(track) }
+          className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+          { isPlaying ? "Pause" : "Play" }
+        </button>
       </td>
-    <td>
-      {sound}
-      <button onClick={() => isPlaying ? pause() : play(track) }>
-        { isPlaying ? "Pause" : "Play" }
-      </button>
-    </td>
-    <td> {track.name} </td>
-    <td> {track.artists[0].name} </td>
-    <td> {track.album.name}</td>
+      <td> {track.name} </td>
+      <td> {track.artists[0].name}</td>
+      <td> {track.album.name} </td>
     </tr>
   );
 }
@@ -36,7 +36,7 @@ const mapStateToProps = (state, ownProps) => {
     currentTrack: state.currentTrack,
     isPlaying: state.playing && state.currentTrack === ownProps.track.id,
     track: ownProps.track,
-    key: ownProps.key
+    key: ownProps.idx
   }
 }
 

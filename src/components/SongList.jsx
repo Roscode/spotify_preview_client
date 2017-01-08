@@ -5,18 +5,18 @@ import Song from './Song';
 const songList = ({tracks}) => {
   if (tracks.length) {
     return (
-      <table className="pure-g pure-table pure-table-striped pure-table-horizontal">
-        <thead className="pure-u-1">
+      <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
           <tr>
-            <th>#</th>
-            <th><pre>    </pre></th>
+            <th className="mdl-data-table__cell">#</th>
+            <th><pre>               </pre></th>
             <th>Title</th>
             <th>Artist</th>
             <th>Album</th>
           </tr>
         </thead>
-        <tbody className="pure-u-1">
-          {tracks.map((track, idx) => <Song key={idx} track={track} />)}
+        <tbody>
+          {tracks.map((track, idx) => <Song key={track.id} idx={idx} track={track} />)}
         </tbody>
       </table>
     );
