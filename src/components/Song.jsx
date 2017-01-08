@@ -16,7 +16,7 @@ const song = ({currentTrack, isPlaying, track, key, play, pause}) => {
   return (
     <tr>
       <td>
-        key
+        {key}
       </td>
     <td>
       {sound}
