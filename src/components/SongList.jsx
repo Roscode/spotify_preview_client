@@ -3,16 +3,26 @@ import { connect } from 'react-redux';
 import Song from './Song';
 
 const songList = ({tracks}) => {
-  let songs = [];
-  // TODO add limit property to state and use it in the for loop
-  for (let i=0; i < tracks.length; i++) {
-    songs.push(<li key={i}><Song track={tracks[i]}/></li>)
+  if (tracks.length) {
+    return (
+      <table className="pure-g pure-table pure-table-striped pure-table-horizontal">
+        <thead className="pure-u-1">
+          <tr>
+            <th>#</th>
+            <th><pre>    </pre></th>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Album</th>
+          </tr>
+        </thead>
+        <tbody className="pure-u-1">
+          {tracks.map((track, idx) => <Song key={idx} track={track} />)}
+        </tbody>
+      </table>
+    );
+  } else {
+    return <div></div>
   }
-  return (
-    <ul>
-      {songs}
-    </ul>
-  );
 }
 
 const mapStateToProps = (state) => {

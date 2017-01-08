@@ -66,7 +66,6 @@ const buildAPIRequest = (search) => {
 }
 
 export const fetchResults = (searchContents) => {
-  console.log('fetchResults was called');
   return (dispatch) => {
     dispatch(requestSongs());
 

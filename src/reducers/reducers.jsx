@@ -37,7 +37,7 @@ const playing = (state = false, action) => {
       return false;
     default:
       return state;
-  }
+    }
 }
 
 const searchContents = (state = '', action) => {
@@ -48,6 +48,7 @@ const searchContents = (state = '', action) => {
       return state;
   }
 }
+
 
 const initialResults = {
   isFetching: false,

@@ -7,10 +7,17 @@ import {
 
 const search = ({searchContents, btnAvailable, onChange, onClick}) => {
   return (
-    <div>
-      <input value={searchContents} onChange={onChange} type="text" placeholder="Search for a song you like"/>
-      <button onClick={() => onClick(searchContents)} disabled={!btnAvailable}>Search</button>
-    </div>
+    <form className="pure-form pure-g" onSubmit={(event) => {
+        event.preventDefault();
+        onClick(searchContents);
+      }}>
+      <div className="pure-u-2-3">
+        <input className="pure-input-1" value={searchContents} onChange={onChange} type="text" placeholder="Search for a song you like"/>
+      </div>
+      <div className="pure-u-1-3">
+        <button className={`${btnAvailable ? "" : "pure-button-disabled"} pure-button pure-input-1`} value="Search" type="submit">Search</button>
+      </div>
+    </form>
   );
 }
 
