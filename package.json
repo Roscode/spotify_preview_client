@@ -1,5 +1,5 @@
 {
-  "name": "simple_counter",
+  "name": "spotify_preview_client",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
