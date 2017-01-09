@@ -1,68 +1,59 @@
 import fetch from 'isomorphic-fetch';
-// action types
-export const UPDATE_SEARCH_CONTENT = 'UPDATE_SEARCH_CONTENT';
+import * as types from './actiontypes';
 
-
-// action creators
 export const updateSearchContent = (content) => {
   return {
-    type: UPDATE_SEARCH_CONTENT,
+    type: types.UPDATE_SEARCH_CONTENT,
     payload: { content }
   }
 }
 
-export const REQUEST_SONGS = 'REQUEST_SONGS';
 export const requestSongs = () => {
   return {
-    type: REQUEST_SONGS,
-    payload: {},
+    type: types.REQUEST_SONGS,
   }
 }
 
-export const RECEIVE_SONGS = 'RECEIVE_SONGS';
-export const receiveSongs = (response) => {
+
+export const receiveSongs = (tracks) => {
   return {
-    type: RECEIVE_SONGS,
-    payload: {
-      tracks: response.tracks.items
-    }
+    type: types.RECEIVE_SONGS,
+    payload: { tracks }
   }
 }
 
-export const FAIL_RECEIVE_SONGS = 'FAIL_RECEIVE_SONGS';
+
 export const failReceiveSongs = (err) => {
   return {
-    type: FAIL_RECEIVE_SONGS,
+    type: types.FAIL_RECEIVE_SONGS,
     payload: { err },
     error: true
   }
 }
 
-export const UPDATE_CURRENT_TRACK = 'UPDATE_CURRENT_TRACK';
+
 export const updateCurrentTrack = (id) => {
   return {
-    type: UPDATE_CURRENT_TRACK,
+    type: types.UPDATE_CURRENT_TRACK,
     payload: { id },
   }
 }
 
-export const PLAY = 'PLAY';
 export const play = () => {
   return {
-    type: PLAY
+    type: types.PLAY
   };
 }
 
-export const PAUSE = 'PAUSE';
 export const pause = () => {
   return {
-    type: PAUSE
+    type: types.PAUSE
   }
 }
 
 
 const buildAPIRequest = (search) => {
-  return `https:/api.spotify.com/v1/search?q=${search.replace(/ /g, '+')}&type=track&limit=5`;
+  return `https://api.spotify.com/v1/search?q=${search.replace(/ /g, '+')}&type=track&limit=5`;
 }
 
 export const fetchResults = (searchContents) => {
@@ -71,9 +62,8 @@ export const fetchResults = (searchContents) => {
 
     return fetch(buildAPIRequest(searchContents))
     .then(response => response.json())
-    .then(json => dispatch(receiveSongs(json)))
-    .catch(err => {
-      console.log(err);
-    });
+    .then(json => json.tracks.items)
+    .then(tracks => dispatch(receiveSongs(tracks)))
+    .catch(err => dispatch(failReceiveSongs(err)));
   }
 }

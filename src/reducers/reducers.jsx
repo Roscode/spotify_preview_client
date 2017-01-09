@@ -7,7 +7,7 @@ import {
   FAIL_RECEIVE_SONGS,
   PLAY,
   PAUSE
- } from '../actions/actions'
+} from '../actions/actiontypes'
 
  /*
  stateShape:
