@@ -28,12 +28,10 @@ const items = (state = initialState.items, action) => {
     case REQUEST_SONGS:
       return state;
     case RECEIVE_SONGS:
-      console.log(action.payload.tracks);
       return {
         tracks: action.payload.tracks
       }
     case FAIL_RECEIVE_SONGS:
-      console.log(action.payload.err)
       return state;
     default:
       return state;

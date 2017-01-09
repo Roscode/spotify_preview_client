@@ -5,18 +5,18 @@ import { updateCurrentTrack, play as playState, pause as pauseState } from '../a
 
 
 export const Song = ({currentTrack, isPlaying, track, idx, play, pause}) => {
-  console.log(idx);
-  let sound = (currentTrack === track.id) ? (<Sound
-    url={track.preview_url}
-    playStatus={isPlaying ? Sound.status.PLAYING : Sound.status.PAUSED}
-    playFromPosition={0}
-    onLoading={() => console.log('song loading')}
-    onPlaying={() => console.log('song playing')}
-    onFinishedPlaying={() => console.log('song finished')}
-    />) : <noscript />;
+  let sound = (currentTrack === track.id) ? (
+    <Sound
+      url={track.preview_url}
+      playStatus={isPlaying ? Sound.status.PLAYING : Sound.status.PAUSED}
+      playFromPosition={0}
+      onLoading={() => console.log('song loading')}
+      onPlaying={() => console.log('song playing')}
+      onFinishedPlaying={() => console.log('song finished')}
+      />) : <noscript />;
   return (
     <tr>
-      <td>{idx}</td>
+      <td>{idx + 1}</td>
       <td>
         {sound}
         <button onClick={() => isPlaying ? pause() : play(track) }
@@ -24,9 +24,9 @@ export const Song = ({currentTrack, isPlaying, track, idx, play, pause}) => {
           { isPlaying ? "Pause" : "Play" }
         </button>
       </td>
-      <td> {track.name} </td>
-      <td> {track.artists[0].name}</td>
-      <td> {track.album.name} </td>
+      <td>{track.name}</td>
+      <td>{track.artists[0].name}</td>
+      <td>{track.album.name}</td>
     </tr>
   );
 }
