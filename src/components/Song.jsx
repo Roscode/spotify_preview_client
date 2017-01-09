@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { updateCurrentTrack, play as playState, pause as pauseState } from '../actions/actions'
 
 
-const song = ({currentTrack, isPlaying, track, idx, play, pause}) => {
+export const Song = ({currentTrack, isPlaying, track, idx, play, pause}) => {
   console.log(idx);
   let sound = (currentTrack === track.id) ? (<Sound
     url={track.preview_url}
@@ -52,6 +52,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const Song = connect(mapStateToProps, mapDispatchToProps)(song);
-
-export default Song;
+export default connect(mapStateToProps, mapDispatchToProps)(Song);

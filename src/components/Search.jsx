@@ -5,11 +5,11 @@ import {
   fetchResults
 } from '../actions/actions.js';
 
-const search = ({searchContents, btnAvailable, onChange, onClick}) => {
+export const Search = ({searchContents, btnAvailable, onChange, onSubmit}) => {
   return (
     <form className="mdl-grid" onSubmit={(event) => {
         event.preventDefault();
-        onClick(searchContents);
+        onSubmit(searchContents);
       }}>
       <div className="mdl-cell mdl-cell--8-col mdl-textfield mdl-js-textfield">
         <input onChange={(event) => {
@@ -38,12 +38,10 @@ const mapDispatchToProps = (dispatch) => {
     onChange: (content) => {
       dispatch(updateSearchContent(content));
     },
-    onClick: (searchContents) => {
+    onSubmit: (searchContents) => {
       dispatch(fetchResults(searchContents))
     }
   }
 }
 
-const Search = connect(mapStateToProps, mapDispatchToProps)(search);
-
-export default Search;
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

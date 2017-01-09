@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Song from './Song';
 
-const songList = ({tracks}) => {
+export const SongList = ({tracks}) => {
   if (tracks.length) {
     return (
       <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
@@ -31,6 +31,5 @@ const mapStateToProps = (state) => {
   }
 }
 
-const SongList = connect(mapStateToProps)(songList);
 
-export default SongList;
+export default connect(mapStateToProps)(SongList);
