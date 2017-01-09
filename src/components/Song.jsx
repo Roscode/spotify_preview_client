@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { updateCurrentTrack, play as playState, pause as pauseState } from '../actions/actions'
 
 
+// TODO add propTypes for all the components
+// TODO remove more logic from this component
+
 export const Song = ({currentTrack, isPlaying, track, idx, play, pause}) => {
   let sound = (currentTrack === track.id) ? (
     <Sound
@@ -13,7 +16,7 @@ export const Song = ({currentTrack, isPlaying, track, idx, play, pause}) => {
       onLoading={() => console.log('song loading')}
       onPlaying={() => console.log('song playing')}
       onFinishedPlaying={() => console.log('song finished')}
-      />) : <noscript />;
+      />) : null;
   return (
     <tr>
       <td>{idx + 1}</td>
