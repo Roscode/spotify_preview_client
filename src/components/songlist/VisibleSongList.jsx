@@ -1,7 +1,9 @@
 import React from 'react';
 import Song from '../song/Song';
+const PropTypes = React.PropTypes;
+import { trackPropType } from '../propTypes';
 
-export default ({tracks}) => {
+const SongList = ({tracks}) => {
   if (tracks.length) {
     return (
       <table className="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
@@ -23,3 +25,9 @@ export default ({tracks}) => {
     return <div></div>
   }
 }
+
+SongList.propTypes = {
+  tracks: PropTypes.arrayOf(trackPropType()).isRequired
+}
+
+export default SongList;
