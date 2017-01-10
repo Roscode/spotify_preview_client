@@ -62,19 +62,28 @@ describe('Song component', () => {
       currentTrack: ''
     })
     const renderShallow = createShallowRendererWithStoreContext(ConnectedSong, buildBaseState());
-    let props, wrapper, track;
+    let props, wrapper, track, visibleSong;
     beforeEach(() => {
       props = buildBaseProps();
       wrapper = renderShallow(props);
       track = props.track;
+      visibleSong = wrapper.find('Song');
     });
 
-    it('should correctly map the state to props', () => {
-      const internalSong = wrapper.find('Song');
-      expect(internalSong.prop('selected')).toBe(false);
-      expect(internalSong.prop('playing')).toBe(false);
-      expect(internalSong.prop('track')).toBe(track);
-      expect(internalSong.prop('index')).toBe(1)
+    it('sets the selected prop', () => {
+      expect(visibleSong.prop('selected')).toBe(false);
     });
+
+    it('sets the playing prop', () => {
+      expect(visibleSong.prop('playing')).toBe(false);
+    });
+
+    it('sets the track prop', () => {
+      expect(visibleSong.prop('track')).toBe(track);
+    });
+
+    it('sets the index prop', () => {
+      expect(visibleSong.prop('index')).toBe(1)
+    })
   });
 })
