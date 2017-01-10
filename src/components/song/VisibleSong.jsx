@@ -21,7 +21,7 @@ const Song = ({selected, playing, track, index, play, pause}) => {
           />) : null}
         <button onClick={() => playing ? pause() : play(track) }
           className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-          { selected && playing ? "Pause" : "Play" }
+          <img alt={ selected && playing ? "PAUSE" : "PLAY" } src={ selected && playing ? "/pause.png" : "/play.png" }/>
         </button>
       </td>
       <td>{track.name}</td>

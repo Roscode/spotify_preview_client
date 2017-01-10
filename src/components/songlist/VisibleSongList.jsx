@@ -10,7 +10,7 @@ const SongList = ({tracks}) => {
         <thead>
           <tr>
             <th className="mdl-data-table__cell">#</th>
-            <th><pre>               </pre></th>
+            <th></th>
             <th>Title</th>
             <th>Artist</th>
             <th>Album</th>
