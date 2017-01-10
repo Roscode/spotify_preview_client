@@ -1,10 +1,10 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import {
   updateSearchContent,
   fetchResults
 } from '../../actions/actions.js';
 import VisibleSearch from './VisibleSearch';
+
 
 const mapStateToProps = (state) => {
   return {

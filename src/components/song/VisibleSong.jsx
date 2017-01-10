@@ -34,6 +34,7 @@ Song.propTypes = {
   selected: PropTypes.bool.isRequired,
   playing: PropTypes.bool.isRequired,
   track: PropTypes.shape({
+    preview_url: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     artists: PropTypes.arrayOf(PropTypes.shape({
@@ -48,6 +49,25 @@ Song.propTypes = {
   pause: PropTypes.func.isRequired
 }
 
-// TODO think of good default props for track info
+Song.sampleProps = {
+  selected: true,
+  playing: false,
+  track: {
+    preview_url: 'https://p.scdn.co/mp3-preview/d0f8166b16772d350909bd87e34cf0ef1041b010?cid=null',
+    id: '27BpBnTNtY9SBrE3EusnM6',
+    name: 'Islands',
+    artists: [
+      {
+        name: 'The xx'
+      }
+    ],
+    album: {
+      name: 'xx'
+    }
+  },
+  index: 1,
+  play: () => {},
+  pause: () => {}
+}
 
 export default Song;
