@@ -1,11 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import {
-  updateSearchContent,
-  fetchResults
-} from '../actions/actions.js';
 
-export const Search = ({searchContents, btnAvailable, onChange, onSubmit}) => {
+export default ({searchContents, btnAvailable, onChange, onSubmit}) => {
   return (
     <form className="mdl-grid" onSubmit={(event) => {
         event.preventDefault();
@@ -25,23 +20,3 @@ export const Search = ({searchContents, btnAvailable, onChange, onSubmit}) => {
     </form>
   );
 }
-
-const mapStateToProps = (state) => {
-  return {
-    searchContents: state.searchContents,
-    btnAvailable: !state.results.isFetching
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onChange: (content) => {
-      dispatch(updateSearchContent(content));
-    },
-    onSubmit: (searchContents) => {
-      dispatch(fetchResults(searchContents))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
