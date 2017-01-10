@@ -53,7 +53,7 @@ export const pause = () => {
 
 
 const buildAPIRequest = (search) => {
-  return `https://api.spotify.com/v1/search?q=${search.replace(/ /g, '+')}&type=track&limit=5`;
+  return `https://api.spotify.com/v1/search?q=${search.replace(' ', '+')}&type=track&limit=5`;
 }
 
 export const fetchResults = (searchContents) => {
