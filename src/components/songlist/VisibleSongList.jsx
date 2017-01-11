@@ -2,6 +2,7 @@ import React from 'react';
 import Song from '../song/Song';
 const PropTypes = React.PropTypes;
 import { trackPropType } from '../propTypes';
+import VisibleSong from '../song/VisibleSong';
 
 const SongList = ({tracks}) => {
   if (tracks.length) {
@@ -29,5 +30,11 @@ const SongList = ({tracks}) => {
 SongList.propTypes = {
   tracks: PropTypes.arrayOf(trackPropType).isRequired
 }
+
+SongList.sampleProps = {
+  tracks: [
+    VisibleSong.sampleProps.track
+  ]
+};
 
 export default SongList;
