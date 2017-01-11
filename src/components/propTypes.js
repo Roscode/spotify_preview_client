@@ -1,7 +1,7 @@
 import React from 'react';
 const PropTypes = React.PropTypes;
 
-export const trackPropType = () => (
+export const trackPropType =
   PropTypes.shape({
     preview_url: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
@@ -12,4 +12,4 @@ export const trackPropType = () => (
     album: PropTypes.shape({
       name: PropTypes.string.isRequired
     }).isRequired
-  }))
+  })

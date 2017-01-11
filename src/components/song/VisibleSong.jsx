@@ -34,7 +34,7 @@ const Song = ({selected, playing, track, index, play, pause}) => {
 Song.propTypes = {
   selected: PropTypes.bool.isRequired,
   playing: PropTypes.bool.isRequired,
-  track: trackPropType().isRequired,
+  track: trackPropType.isRequired,
   index: PropTypes.number.isRequired,
   play: PropTypes.func.isRequired,
   pause: PropTypes.func.isRequired
