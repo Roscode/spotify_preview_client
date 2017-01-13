@@ -1,34 +1,69 @@
 import { combineReducers } from 'redux';
-import playing from './playing';
-import searchContents from './searchContents';
-import results from './results';
-import currentTrack from './currentTrack';
+import { UPDATE_SEARCH_CONTENT,
+  REQUEST_SONGS, RECEIVE_SONGS,
+  FAIL_RECEIVE_SONGS, PLAY, PAUSE, UPDATE_CURRENT_TRACK
+} from '../actions/actiontypes';
 
+ const searchContents = (state = '', action) => {
+   switch (action.type) {
+     case UPDATE_SEARCH_CONTENT:
+       return action.payload.content;
+     default:
+       return state;
+   }
+ }
 
- /*
- stateShape:
+const isFetching = (state = false, action) => {
+   switch (action.type) {
+     case REQUEST_SONGS:
+       return true;
+     case RECEIVE_SONGS:
+       return false;
+     case FAIL_RECEIVE_SONGS:
+       return false;
+     default:
+       return state;
+   }
+ }
 
-{
-  currentTrack: trackid,
-  searchContents: string,
-  results: {
-    isFetching: boolean,
-    items: {
-      tracks: [trackobjects],
-      artists: [artistsobjects],
-      albums: [albumobjects],
-      playlist: [playlistobjects]
-      }
-    },
-  playing: bool
-}
+ const tracks = (state = [], action) => {
+   switch (action.type) {
+     case REQUEST_SONGS:
+       return state;
+     case RECEIVE_SONGS:
+       return action.payload.tracks
+     case FAIL_RECEIVE_SONGS:
+       return state;
+     default:
+       return state;
+   }
+ }
 
-
- */
+ const playing = (state = false, action) => {
+   switch (action.type) {
+     case PLAY:
+       return true;
+     case PAUSE:
+       return false;
+     default:
+       return state;
+     }
+ }
+const currentTrack = (state = '', action) => {
+   switch (action.type) {
+     case UPDATE_CURRENT_TRACK:
+       return action.payload.id;
+     default:
+       return state;
+   }
+ }
 
 const rootReducer = combineReducers({
   searchContents,
-  results,
+  results: combineReducers({
+    isFetching,
+    tracks
+  }),
   currentTrack,
   playing
 })

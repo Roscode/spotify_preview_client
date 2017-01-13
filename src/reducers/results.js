@@ -43,4 +43,4 @@ const resultsReducer = combineReducers({
   items
 })
 
-export default resultsReducer;
+export resultsReducer;
