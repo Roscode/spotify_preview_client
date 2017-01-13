@@ -9,7 +9,7 @@ import VisibleSearch from './VisibleSearch';
 const mapStateToProps = (state) => {
   return {
     searchContents: state.searchContents,
-    btnAvailable: !state.results.isFetching
+    btnAvailable: !state.isFetching
   }
 }
 

@@ -3,7 +3,7 @@ import VisibleSongList from './VisibleSongList';
 
 const mapStateToProps = (state) => {
   return {
-    tracks: state.results.items.tracks
+    tracks: state.tracks.map((id) => state.tracksById[id])
   }
 }
 

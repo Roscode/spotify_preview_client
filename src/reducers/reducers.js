@@ -4,14 +4,14 @@ import { UPDATE_SEARCH_CONTENT,
   FAIL_RECEIVE_SONGS, PLAY, PAUSE, UPDATE_CURRENT_TRACK
 } from '../actions/actiontypes';
 
- const searchContents = (state = '', action) => {
+const searchContents = (state = '', action) => {
    switch (action.type) {
      case UPDATE_SEARCH_CONTENT:
        return action.payload.content;
      default:
        return state;
    }
- }
+}
 
 const isFetching = (state = false, action) => {
    switch (action.type) {
@@ -24,22 +24,30 @@ const isFetching = (state = false, action) => {
      default:
        return state;
    }
- }
+}
 
- const tracks = (state = [], action) => {
+const tracks = (state = [], action) => {
+  switch (action.type) {
+    case RECEIVE_SONGS:
+      return action.payload.tracks;
+    default:
+      return state;
+   }
+}
+
+const tracksById = (state = {}, action) => {
    switch (action.type) {
-     case REQUEST_SONGS:
-       return state;
      case RECEIVE_SONGS:
-       return action.payload.tracks
-     case FAIL_RECEIVE_SONGS:
-       return state;
+       return {
+         ...state,
+         [action.id]: tracks(state[action.id], action)
+       }
      default:
        return state;
    }
- }
+}
 
- const playing = (state = false, action) => {
+const playing = (state = false, action) => {
    switch (action.type) {
      case PLAY:
        return true;
@@ -60,10 +68,9 @@ const currentTrack = (state = '', action) => {
 
 const rootReducer = combineReducers({
   searchContents,
-  results: combineReducers({
-    isFetching,
-    tracks
-  }),
+  isFetching,
+  tracksById,
+  tracks,
   currentTrack,
   playing
 })
